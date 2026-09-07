@@ -7,3 +7,6 @@ Type=oneshot
 User=root
 WorkingDirectory=/opt/server-sentinel
 ExecStart=/opt/server-sentinel/scripts/backup_logs.sh
+MemoryMax=100M
+ProtectSystem=full
+ProtectHome=read-only

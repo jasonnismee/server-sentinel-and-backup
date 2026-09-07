@@ -32,3 +32,15 @@ rsync -avzP --delete \
 	"$SRC_DIR" \
 	"$DEST_SERVER:$DEST_DIR" >> "$LOG_FILE" 2>&1
 log_message "[SUCCESS] Backup thanh cong"
+#LockFile
+LOCK_FILE="/tmp/sentinel_backup.lock"
+cleanup() {
+	rm -f $LOCK_FILE
+	log_message "[INFO] Da don dep tai nguyen va huy Lock file"
+}
+trap cleanup EXIT INT TERM ERR
+if [[ -f "$LOCK_FILE" ]]; then
+	log_message "[ERROR] Tien trinh khac dang chay!"
+	exit 1
+fi
+echo "$$" > $LOCK_FILE

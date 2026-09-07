@@ -6,4 +6,6 @@ Type=oneshot
 WorkingDirectory=/opt/server-sentinel
 ExecStart=/opt/server-sentinel/scripts/collect_metrics.sh
 User=root
-
+MemoryMax=100M
+ProtectSystem=full
+ProtectHome=read-only

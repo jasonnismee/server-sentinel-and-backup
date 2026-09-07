@@ -13,6 +13,7 @@ echo "Copy cau hinh vao $CONFIG_DIR"
 if [[ ! -f "$CONFIG_DIR/sentinel.env" ]]; then
 	sudo cp config/sentinel.env.example "$CONFIG_DIR/sentinel.env"
 fi
+sudo chmod 600 "$CONFIG_DIR/sentinel.env"
 
 echo "Copy ma nguon vao $INSTALL_DIR"
 sudo cp -r scripts "$INSTALL_DIR/"
