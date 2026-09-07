@@ -1,0 +1,9 @@
+[Unit]
+Description=Every 2am run backup to server B
+
+[Timer]
+OnCalendar=*-*-* 02:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

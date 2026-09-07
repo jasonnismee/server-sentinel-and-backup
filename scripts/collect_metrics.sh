@@ -1,15 +1,11 @@
 #!/bin/bash
+ENV_FILE="/etc/sentinel/sentinel.env"
+if [[ -f "$ENV_FILE" ]]; then source "$ENV_FILE"; else exit 1; fi
 
 DISK_USED=$(df / -h | awk 'NR==2 {print $5}' | tr -d '%')
 RAM_USED=$(free | awk 'NR==2 {printf "%.0f\n", (1 - $7/$2) * 100}')
 CPU_USED=$(top -bn1 | grep "Cpu(s)" | awk '{printf "%.0f\n", 100 - $8}')
 
-THRESHOLD_DISK=85
-THRESHOLD_RAM=90
-THRESHOLD_CPU=80
-
-LOG_DIR="var/log/sentinel"
-LOG_FILE="$LOG_DIR/metrics.log"
 mkdir -p "$LOG_DIR"
 
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")

@@ -1,0 +1,9 @@
+[Unit]
+Description=Backup file from server A
+After=network.target
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/server-sentinel
+ExecStart=/opt/server-sentinel/scripts/backup_logs.sh
